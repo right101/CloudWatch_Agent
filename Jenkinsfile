@@ -10,7 +10,13 @@ pipeline {
                 }
             }
         }
-
+        stage('Update IAM Permissions') {
+            steps {
+                script {
+                        sh './agen_config/update-iam-permissions.sh'
+                    }
+                }
+            }
         stage('Setup AWS Permissions') {
             steps {
                 script {
