@@ -2,22 +2,21 @@ pipeline {
     agent any
 
     stages {
-        stage('Setup AWS Permissions') {
-            steps {
-                script {
-                        sh 'chmod +x ./agen_config/iam-role.sh'
-                        sh './agen_config/iam-role.sh'
-                }
-            }
-        }
-        
         stage('Install AWS CLI') {
             steps {
                 script {
-                        sh 'chmod +x ./agen_config/aws-cli.sh'
-                        sh './agen_config/aws-cli.sh'
+                    sh 'chmod +x ./agen_config/aws-cli.sh'
+                    sh './agen_config/aws-cli.sh'
                 }
-              
+            }
+        }
+
+        stage('Setup AWS Permissions') {
+            steps {
+                script {
+                    sh 'chmod +x ./agen_config/iam-role.sh'
+                    sh './agen_config/iam-role.sh'
+                }
             }
         }
 
@@ -32,6 +31,5 @@ pipeline {
                 '''
             }
         }
-
     }
 }
