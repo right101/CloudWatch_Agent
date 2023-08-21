@@ -1,0 +1,39 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Setup AWS Permissions') {
+            steps {
+                script {
+                    dir("agen_config") {
+                        sh 'iam-role.sh'
+                    }
+                }
+            }
+        }
+        
+        stage('Install AWS CLI') {
+            steps {
+                script {
+                    dir("agen_config") {
+                        sh 'aws-cli.sh'
+                    }
+                }
+              
+            }
+        }
+
+        stage('Install and Start CloudWatch Agent') {
+            steps {
+                sh '''
+                  wget https://s3.amazonaws.com/amazoncloudwatch-agent/ubuntu/amd64/latest/amazon-cloudwatch-agent.deb
+                  sudo dpkg -i -E ./amazon-cloudwatch-agent.deb
+                  
+                  # Configure the CloudWatch agent (Use your configuration file)
+                  sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -c file:./cloudwatch-config.json -s
+                '''
+            }
+        }
+
+    }
+}
