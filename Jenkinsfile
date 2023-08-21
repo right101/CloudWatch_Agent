@@ -5,9 +5,7 @@ pipeline {
         stage('Setup AWS Permissions') {
             steps {
                 script {
-                    dir("agen_config") {
-                        sh 'iam-role.sh'
-                    }
+                        sh './agen_config/iam-role.sh'
                 }
             }
         }
@@ -15,9 +13,7 @@ pipeline {
         stage('Install AWS CLI') {
             steps {
                 script {
-                    dir("agen_config") {
-                        sh 'aws-cli.sh'
-                    }
+                        sh './agen_config/aws-cli.sh'
                 }
               
             }
