@@ -23,5 +23,5 @@ This Jenkins pipeline will:
 Update the package repositories.
 Install the AWS CLI.
 Download and install the CloudWatch Agent.
-Use a basic configuration for the CloudWatch Agent (replace the dummy configuration with your actual requirements).
+Use a basic configuration for the CloudWatch Agent.
 Start the CloudWatch Agent with the provided configuration.
