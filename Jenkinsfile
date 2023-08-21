@@ -13,6 +13,7 @@ pipeline {
         stage('Update IAM Permissions') {
             steps {
                 script {
+                        sh 'chmod +x ./agen_config/update-iam-permissions.sh'
                         sh './agen_config/update-iam-permissions.sh'
                     }
                 }
