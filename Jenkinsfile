@@ -4,19 +4,19 @@ pipeline {
     stages {
         stage('Terraform Init') {
             steps {
-                    dir("terraform")
+                    dir('terraform')
                         sh 'terraform init' 
             }
         }
         stage('Terraform Plan') {
             steps {
-                    dir("terraform")
+                    dir('terraform')
                         sh 'terraform plan' 
                 }
             }
         stage('Terraform Apply') {
             steps {
-                    dir("terraform")
+                    dir('terraform')
                         sh 'terraform apply' 
             }
         }
