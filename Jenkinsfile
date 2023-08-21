@@ -2,27 +2,27 @@ pipeline {
     agent any
 
     stages {
-        stage('Install AWS CLI') {
+        stage('Terraform Init') {
             steps {
                 script {
-                    sh 'chmod +x ./agen_config/aws-cli.sh'
-                    sh './agen_config/aws-cli.sh'
+                    sh './terraform/jenkins-role.tf'
+                    sh './terraform/cloudagent-role.tf'
                 }
             }
         }
-        stage('Update IAM Permissions') {
+        stage('Terraform Plan') {
             steps {
                 script {
-                        sh 'chmod +x ./agen_config/update-iam-permissions.sh'
-                        sh './agen_config/update-iam-permissions.sh'
+                    sh './terraform/jenkins-role.tf'
+                    sh './terraform/cloudagent-role.tf'
                     }
                 }
             }
-        stage('Setup AWS Permissions') {
+        stage('Terraform Apply') {
             steps {
                 script {
-                    sh 'chmod +x ./agen_config/iam-role.sh'
-                    sh './agen_config/iam-role.sh'
+                    sh './terraform/jenkins-role.tf'
+                    sh './terraform/cloudagent-role.tf'
                 }
             }
         }
@@ -34,7 +34,7 @@ pipeline {
                   sudo dpkg -i -E ./amazon-cloudwatch-agent.deb
                   
                   # Configure the CloudWatch agent (Use your configuration file)
-                  sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -c file:./cloudwatch-config.json -s
+                  sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -c file:./cw-agent-config.json -s
                 '''
             }
         }
