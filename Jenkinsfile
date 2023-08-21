@@ -4,26 +4,20 @@ pipeline {
     stages {
         stage('Terraform Init') {
             steps {
-                script {
                     dir("terraform")
-                    sh 'terraform init' 
-                }
+                        sh 'terraform init' 
             }
         }
         stage('Terraform Plan') {
             steps {
-                script {
                     dir("terraform")
-                    sh 'terraform plan' 
-                    }
+                        sh 'terraform plan' 
                 }
             }
         stage('Terraform Apply') {
             steps {
-                script {
                     dir("terraform")
-                    sh 'terraform apply' 
-                }
+                        sh 'terraform apply' 
             }
         }
 
