@@ -16,7 +16,7 @@ Logs:
 This configuration collects logs from /var/log/syslog and /var/log/auth.log.
 Logs are sent to CloudWatch Logs, with the log group names being syslog and auth.log respectively.
 The log stream names will be the instance ID of the EC2 instance.
-
+test
 
 This Jenkins pipeline will:
 
