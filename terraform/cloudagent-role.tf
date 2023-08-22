@@ -35,7 +35,7 @@ resource "aws_iam_role" "cloudwatch_agent_role" {
         Effect = "Allow",
         Sid    = ""
       }
-    ]
+    ] 
   })
 }
 
