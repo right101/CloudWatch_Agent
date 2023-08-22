@@ -2,27 +2,27 @@ pipeline {
     agent any
 
     stages {
-        stage('Terraform Init') {
-            steps {
-                    dir('terraform') {
-                        sh 'terraform init' 
-                    }
-            }    
-        }
-        stage('Terraform Plan') {
-            steps {
-                    dir('terraform') {
-                        sh 'terraform plan' 
-                     }
-                }     
-            }
-        stage('Terraform Apply') {
-            steps {
-                    dir('terraform') {
-                        sh 'terraform apply -auto-approve' 
-                     }
-            }     
-        }
+        // stage('Terraform Init') {
+        //     steps {
+        //             dir('terraform') {
+        //                 sh 'terraform init' 
+        //             }
+        //     }    
+        // }
+        // stage('Terraform Plan') {
+        //     steps {
+        //             dir('terraform') {
+        //                 sh 'terraform plan' 
+        //              }
+        //         }     
+        //     }
+        // stage('Terraform Apply') {
+        //     steps {
+        //             dir('terraform') {
+        //                 sh 'terraform apply -auto-approve' 
+        //              }
+        //     }     
+        // }
 
         stage('Install and Start CloudWatch Agent') {
             steps {
@@ -33,6 +33,7 @@ pipeline {
                   # Configure the CloudWatch agent (Use your configuration file)
                   sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -c file:./cw-agent-config.json -s
                 '''
+                
             }
         }
     }
